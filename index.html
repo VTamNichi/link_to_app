@@ -32,11 +32,12 @@
 
     <script>
         function openOrDownloadIOS() {
-            window.location.href = "http://itunes.apple.com/lb/app/facebook/id284882215?mt=8";
+            setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/facebook/id284882215?mt=8"; }, 500);
+            window.location = "fb://";
         }
 
         function openOrDownloadAndroid() {
-            setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana&hl=en"; }, 1000);
+            setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana&hl=en"; }, 500);
             window.location = "fb://";
         }
     </script>
