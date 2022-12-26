@@ -44,14 +44,14 @@
 
         function openOrDownloadApp() {
             var os = getMobileOperatingSystem();
-            alert("kkk: " + os);
-            // var ua = navigator.userAgent.toLowerCase();
-            // var isAndroid = ua.indexOf("android") > -1;
-            // if (isAndroid) {
-            //     openOrDownloadAndroid();
-            // } else {
-            //     openOrDownloadIOS();
-            // }
+            if(os == "Android") {
+                openOrDownloadAndroid();
+            } else if (os == "iOS") {
+                openOrDownloadIOS();
+            } else if (os == "Windows Phone") {
+            } else if (os == "unknown") {
+                alert("Unknow device");
+            }
         }
 
         function getMobileOperatingSystem() {
