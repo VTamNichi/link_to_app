@@ -15,6 +15,7 @@ body{
 a{
     text-decoration: none;
 }
+
 img{
     width: 100%;
     display: block;
@@ -23,7 +24,6 @@ img{
 .section-four{
     background: url(../images/vector-bg.png) center/cover no-repeat;
     height: fit-content;
-    padding: 11rem 0;
     position: relative;
 }
 .section-four-content{

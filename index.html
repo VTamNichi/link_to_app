@@ -31,6 +31,7 @@
     </div>
 
     <script>
+        openOrDownloadApp();
         function openOrDownloadIOS() {
             setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/facebook/id284882215?mt=8"; }, 500);
             window.location = "fb://";
@@ -39,6 +40,16 @@
         function openOrDownloadAndroid() {
             setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana&hl=en"; }, 500);
             window.location = "fb://";
+        }
+
+        function openOrDownloadApp() {
+            var ua = navigator.userAgent.toLowerCase();
+            var isAndroid = ua.indexOf("android") > -1;
+            if(isAndroid) {
+                openOrDownloadAndroid();
+            } else {
+                openOrDownloadIOS();
+            }
         }
     </script>
 </body>
