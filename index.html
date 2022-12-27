@@ -33,25 +33,30 @@
     <script>
         openOrDownloadApp();
         function openOrDownloadIOS() {
-            setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/facebook/id284882215?mt=8"; }, 500);
+            setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/facebook/id284882215"; }, 500);
             window.location = "fb://";
         }
 
         function openOrDownloadAndroid() {
-            setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana&hl=en"; }, 500);
+            setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana"; }, 500);
             window.location = "fb://";
         }
 
-        function openOrDownloadApp() {
-            var os = getMobileOperatingSystem();
-            if(os == "Android") {
-                openOrDownloadAndroid();
-            } else if (os == "iOS") {
-                openOrDownloadIOS();
-            } else if (os == "Windows Phone") {
-            } else if (os == "unknown") {
-                alert("Unknow device");
+        async function openOrDownloadApp() {
+            const listOfInstalledApps = await navigator.getInstalledRelatedApps();
+            alert("list: " + listOfInstalledApps);
+            for (const app of listOfInstalledApps) {
+                alert("apps: " + app.url);
             }
+            // var os = getMobileOperatingSystem();
+            // if(os == "Android") {
+            //     openOrDownloadAndroid();
+            // } else if (os == "iOS") {
+            //     openOrDownloadIOS();
+            // } else if (os == "Windows Phone") {
+            // } else if (os == "unknown") {
+            //     alert("Unknow device");
+            // }
         }
 
         function getMobileOperatingSystem() {
