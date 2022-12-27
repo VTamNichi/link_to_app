@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link V10</title>
+    <title>Link V11</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -32,16 +32,7 @@
 
     <script>
         window.addEventListener('load', () => {
-            if ('getInstalledRelatedApps' in navigator) {
-                navigator.getInstalledRelatedApps().then((relatedApps) => {
-                    relatedApps.forEach((app) => {
-                        alert("aaaaaaa");
-                    });
-                });
-            } else {
-                alert("Not support");
-            }
-            // openOrDownloadApp();
+            openOrDownloadApp();
         });
 
         function openOrDownloadIOS() {
