@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link</title>
+    <title>Link V10</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -31,7 +31,19 @@
     </div>
 
     <script>
-        openOrDownloadApp();
+        window.addEventListener('load', () => {
+            if ('getInstalledRelatedApps' in navigator) {
+                navigator.getInstalledRelatedApps().then((relatedApps) => {
+                    relatedApps.forEach((app) => {
+                        alert("aaaaaaa");
+                    });
+                });
+            } else {
+                alert("Not support");
+            }
+            // openOrDownloadApp();
+        });
+
         function openOrDownloadIOS() {
             setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/facebook/id284882215"; }, 500);
             window.location = "fb://";
@@ -42,21 +54,16 @@
             window.location = "fb://";
         }
 
-        async function openOrDownloadApp() {
-            const listOfInstalledApps = await navigator.getInstalledRelatedApps();
-            alert("list: " + listOfInstalledApps);
-            for (const app of listOfInstalledApps) {
-                alert("apps: " + app.url);
+        function openOrDownloadApp() {
+            var os = getMobileOperatingSystem();
+            if (os == "Android") {
+                openOrDownloadAndroid();
+            } else if (os == "iOS") {
+                openOrDownloadIOS();
+            } else if (os == "Windows Phone") {
+            } else if (os == "unknown") {
+                alert("Unknow device");
             }
-            // var os = getMobileOperatingSystem();
-            // if(os == "Android") {
-            //     openOrDownloadAndroid();
-            // } else if (os == "iOS") {
-            //     openOrDownloadIOS();
-            // } else if (os == "Windows Phone") {
-            // } else if (os == "unknown") {
-            //     alert("Unknow device");
-            // }
         }
 
         function getMobileOperatingSystem() {
