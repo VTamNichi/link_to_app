@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link V14</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100%;
+            font-family: "Manrope", sans-serif;
+            margin: 0;
+            background-color: #fff;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            width: 50%;
+            display: block;
+        }
+
+        .container {
+            padding: 10px;
+        }
+
+        .info {
+            margin: 0 auto;
+            padding: 5px;
+            width: max-content;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .count {
+            margin: 0 auto;
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            margin-top: 40px;
+        }
+
+        #countdown {
+            width: max-content;
+            padding: 5px 18px;
+            background: #F3F4F5;
+            border-radius: 90px;
+            font-weight: 400;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .logo-clinic {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 1px solid #ED1B24;
+        }
+
+        .follow-rating {
+            display: flex;
+            flex-direction: row;
+            padding: 5px 0;
+            align-items: center;
+        }
+
+        .name {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .follower,
+        .address {
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .store-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .store-group a {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .store-group a:hover {
+            transform: scale(1.05);
+        }
+
+        .store-group img {
+            width: 170px;
+        }
+
+        .store-group a:first-child {
+            margin-bottom: 2rem;
+        }
+
+        /* Media Queries */
+        @media(min-width: 500px) {
+            .store-group a {
+                width: auto;
+            }
+
+            .store-group a:first-child {
+                margin-bottom: 0;
+                margin-right: 4rem;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="info">
+            <div style="margin-right: 10px;">
+                <img class="logo-clinic" id="logo-clinic" src="images/ic_logo.svg">
+            </div>
+            <div>
+                <div>
+                    <span class="name" id="name">Phòng khám 1</span>
+                </div>
+                <div class="follow-rating">
+                    <span class="follower" id="follower">25k Theo dõi &#x2022; Đánh giá 4.5</span>
+                    <span> <img style=" width: 16px; height: 16px; padding-left: 2px;" src="images/ic_star.svg"></span>
+                </div>
+                <div>
+                    <span class="address" id="address">Địa chỉ: 136 TRẦN HƯNG ĐẠO, P. 5, Tp. Cà Mau T. Cà Mau</span>
+                </div>
+            </div>
+        </div>
+        <div class="store-group">
+            <a href="#" onclick="openOrDownloadIOS()">
+                <img src="images/ios.png">
+            </a>
+            <a href="#" onclick="openOrDownloadAndroid()">
+                <img src="images/google.png">
+            </a>
+        </div>
+        <div class="count">
+            <div id="countdown">5</div>
+        </div>
+    </div>
+
+    <script>
+        // window.addEventListener('load', () => {
+        //     openOrDownloadApp();
+        // });
+
+        const queryString = window.location.search;
+
+        countDown();
+
+
+        async function countDown() {
+            var timeleft = 4;
+            var downloadTimer = setInterval(function () {
+                if (timeleft < 0) {
+                    clearInterval(downloadTimer);
+                    console.log(queryString);
+                } else {
+                    document.getElementById("countdown").innerHTML = timeleft;
+                }
+                timeleft -= 1;
+            }, 1000);
+
+        }
+
+        function openOrDownloadIOS() {
+            console.log(queryString);
+            try {
+                setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/truecaller-caller-id-number/id448142450?mt=8"; }, 500);
+            }
+            catch (err) {
+                window.location = "truecaller://";
+            }
+        }
+
+        function openOrDownloadAndroid() {
+            console.log(queryString);
+            try {
+                setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana&hl=en"; }, 500);
+            }
+            catch (err) {
+                window.location = "facebook://";
+            }
+        }
+
+        function openOrDownloadApp() {
+            var os = getMobileOperatingSystem();
+            if (os == "Android") {
+                openOrDownloadAndroid();
+            } else if (os == "iOS") {
+                openOrDownloadIOS();
+            } else if (os == "Windows Phone") {
+            } else if (os == "unknown") {
+                alert("Unknow device");
+            }
+        }
+
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/windows phone/i.test(userAgent)) {
+                return "Windows Phone";
+            }
+
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+
+            return "unknown";
+        }
+
+        renderData()
+        function renderData() {
+            const clinic = JSON.parse('{"name":"Phòng khám 1", "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1wDlaFCzpImXv-9KNOC985rAIn4x5Sv67g&usqp=CAU", "numberOfLike":"30", "rating":4.5, "address":"136 TRẦN HƯNG ĐẠO, P. 5, Tp. Cà Mau T. Cà Mau"}');
+            document.getElementById("name").innerHTML = clinic.name;
+            document.getElementById("follower").innerHTML = clinic.numberOfLike + " Theo dõi &#x2022; Đánh giá " + clinic.rating;
+            document.getElementById("logo-clinic").src = clinic.logo ?? "images/ic_logo.svg";
+            document.getElementById("address").innerHTML = "Địa chỉ: " + clinic.address;
+        }
+    </script>
+</body>
+
+</html>
