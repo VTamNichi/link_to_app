@@ -187,22 +187,15 @@
 
         function openOrDownloadIOS() {
             console.log(queryString);
-            try {
-                setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/truecaller-caller-id-number/id448142450?mt=8"; }, 500);
-            }
-            catch (err) {
-                window.location = "truecaller://";
-            }
+            setTimeout(function () { window.location = "http://itunes.apple.com/lb/app/truecaller-caller-id-number/id448142450?mt=8"; }, 500);
+            window.location = "truecaller://";
+
         }
 
         function openOrDownloadAndroid() {
             console.log(queryString);
-            try {
-                setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana&hl=en"; }, 500);
-            }
-            catch (err) {
-                window.location = "facebook://";
-            }
+            setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.facebook.katana&hl=en"; }, 500);
+            window.location = "facebook://";
         }
 
         function openOrDownloadApp() {
